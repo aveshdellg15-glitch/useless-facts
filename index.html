@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolutely Useless Facts</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            margin: 20px;
+            border: 5px dashed #ff00ff;
+        }
+        
+        h1 {
+            color: #ff1493;
+            text-shadow: 3px 3px 0 #00ffff;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: bounce 0.5s infinite alternate;
+        }
+        
+        .fact {
+            font-size: 1.5rem;
+            margin: 30px 0;
+            color: #333;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+        }
+        
+        button {
+            background: linear-gradient(to right, #ff00ff, #00ffff);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .emoji {
+            font-size: 3rem;
+            display: block;
+            margin: 20px 0;
+            animation: spin 2s linear infinite;
+        }
+        
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Absolutely Useless Facts</h1>
+        <div class="emoji">🤪</div>
+        <div class="fact" id="fact">Loading the most useless fact ever...</div>
+        <button id="newFact">Gimme Another!</button>
+    </div>
+
+    <script>
+        const facts = [
+            "Bananas are berries, but strawberries aren't. The world is a lie.",
+            "A group of pandas is called an 'embarrassment' because they can't mate in captivity.",
+            "The inventor of the frisbee was turned into a frisbee after he died. (This is actually true.)",
+            "Cows have best friends and get stressed when they're separated.",
+            "The dot over the letter 'i' is called a tittle. Now you know what to name your next pet.",
+            "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still good to eat. (Not recommended though.)",
+            "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.",
+            "A single cloud can weigh more than 1 million pounds. That's why you shouldn't try to catch them.",
+            "The world's oldest piece of chewing gum is over 9,000 years old. It still has ancient tooth marks in it.",
+            "Octopuses have three hearts, nine brains, and blue blood. They're basically alien royalty.",
+            "The Eiffel Tower can be 15 cm taller during the summer due to thermal expansion. It's basically a metal plant.",
+            "A day on Venus is longer than a year on Venus. Talk about bad time management.",
+            "The smell of freshly cut grass is actually a plant distress call. You monster.",
+            "A shrimp's heart is in its head. Which explains why they're not very romantic.",
+            "The total weight of all the ants on Earth is about equal to the total weight of all humans. Ant uprising coming soon."
+        ];
+
+        const emojis = ["🤯", "🤪", "👽", "🦄", "🐙", "🍌", "🦆", "🌈", "🍕", "🚀"];
+        
+        const factElement = document.getElementById('fact');
+        const newFactButton = document.getElementById('newFact');
+        const emojiElement = document.querySelector('.emoji');
+        
+        function displayRandomFact() {
+            // Random fact
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            
+            // Random emoji
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            // Apply changes with animation
+            factElement.style.opacity = 0;
+            emojiElement.style.transform = 'scale(0)';
+            
+            setTimeout(() => {
+                factElement.textContent = randomFact;
+                emojiElement.textContent = randomEmoji;
+                factElement.style.opacity = 1;
+                emojiElement.style.transform = 'scale(1)';
+                
+                // Create confetti
+                createConfetti();
+            }, 500);
+        }
+        
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = hsl(${Math.random() * 360}, 100%, 50%);
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                const animation = confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg), opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+        
+        newFactButton.addEventListener('click', displayRandomFact);
+        
+        // Display first fact
+        displayRandomFact();
+        
+        // Make the title bounce continuously
+        setInterval(() => {
+            document.querySelector('h1').style.animation = 'none';
+            void document.querySelector('h1').offsetWidth; // Trigger reflow
+            document.querySelector('h1').style.animation = 'bounce 0.5s infinite alternate';
+        }, 5000);
+    </script>
+</body>
+</html>
